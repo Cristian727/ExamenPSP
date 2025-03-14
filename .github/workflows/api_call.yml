@@ -1,35 +1,23 @@
-name: API Call
-
-on:
-  schedule:
-    - cron: "*/30 * * * *"
-  workflow_dispatch:
-
 jobs:
   api_call:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
         with:
-          node-version: '16'
-      - name: Install dependencies
-        run: npm install axios
+          token: ${{ secrets.GITHUB_TOKEN }}  # Usa el token de GitHub Actions por defecto
+
       - name: Run API call script
         run: node scripts/api_call.js
+
       - name: Commit results
         run: |
-          # Configurar la identidad de Git para el bot
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "github-actions@users.noreply.github.com"
-          
           git add logs/api_response_*
-          git diff --cached --exit-code || git commit -m 'Guardar respuesta de API' 
-          
-          # Usar el PAT para hacer push
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+          git commit -m 'Guardar respuesta de API' || echo "No hay cambios"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Usa el token de GitHub Actions para autenticación
+
       - name: Send Telegram Notification
         run: node scripts/notify.js
         env:
