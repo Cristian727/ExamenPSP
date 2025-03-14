@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 const axios = require('axios');
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
