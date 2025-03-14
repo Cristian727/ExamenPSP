@@ -1,0 +1,25 @@
+name: Backup Logs
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Run backup script
+        run: node scripts/backup.js
+      - name: Commit backup
+        run: |
+          git add backups/*
+          git commit -m 'Backup de logs' || echo "No hay cambios"
+          git push
+      - name: Send Telegram Notification
+        run: node scripts/notify.js
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}

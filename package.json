@@ -1,0 +1,23 @@
+{
+  "name": "examenpsp",
+  "version": "1.0.0",
+  "description": "1. Crear un repositorio en GitHub.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cristian727/ExamenPSP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cristian727/ExamenPSP/issues"
+  },
+  "homepage": "https://github.com/Cristian727/ExamenPSP#readme",
+  "dependencies": {
+    "axios": "^1.8.3"
+  }
+}
