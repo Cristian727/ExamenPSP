@@ -60,3 +60,4 @@
 2. Verificar que los workflows se ejecutan automáticamente según lo programado.
 3. Comprobar que los archivos generados se guardan en el repositorio.
 4. Confirmar la recepción de notificaciones en Telegram.
+![Captura de pantalla 2025-03-14 161157](https://github.com/user-attachments/assets/b76e703f-7c57-4d6c-8c35-50f6898a1aa7)
